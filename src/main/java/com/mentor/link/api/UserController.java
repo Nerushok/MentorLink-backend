@@ -1,10 +1,10 @@
 package com.mentor.link.api;
 
-import com.mentor.link.service.UserService;
+import com.mentor.link.Constants;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("api/v1/user")
+@RequestMapping(Constants.API_V1 + "user")
 @RestController
 public class UserController {
 }
