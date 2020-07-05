@@ -4,9 +4,9 @@ import com.mentor.link.model.LoginRequest;
 import com.mentor.link.model.RegistrationRequest;
 import com.mentor.link.model.User;
 import com.mentor.link.repository.user.UserRepository;
+import com.mentor.link.utils.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,6 +43,6 @@ public class AuthService {
         final Optional<User> user = userRepository.getUserByEmail(loginRequest.getEmail());
 
         if (user.isPresent()) return user.get();
-        else throw new UsernameNotFoundException("User isn't exist.");
+        else throw new UserNotFoundException();
     }
 }

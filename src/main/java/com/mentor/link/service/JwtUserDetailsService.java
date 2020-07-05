@@ -2,6 +2,7 @@ package com.mentor.link.service;
 
 import com.mentor.link.model.User;
 import com.mentor.link.repository.user.UserRepository;
+import com.mentor.link.utils.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +25,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         if (user.isPresent()) {
             return getUserDetailsByUser(user.get());
         } else {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+            throw new UserNotFoundException();
         }
     }
 
