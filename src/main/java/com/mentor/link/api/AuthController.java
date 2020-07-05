@@ -25,22 +25,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-    private final AuthService authService;
-
+    @Autowired
+    private AuthService authService;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtUserDetailsService userDetailsService;
-
-    private final UserResponseMapper userResponseMapper = new UserResponseMapper();
-
-
     @Autowired
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    private UserResponseMapper userResponseMapper;
 
     @PostMapping("/login")
     public ResponseEntity<AuthorizationResponse> login(@RequestBody LoginRequest loginRequest) throws Exception {
