@@ -1,15 +1,13 @@
 package com.mentor.link.repository.user;
 
 import com.mentor.link.model.User;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
-public interface UserRepository {
+@Repository
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    Optional<User> getUserById(UUID id);
-
-    Optional<User> getUserByEmail(String email);
-
-    User addUser(User user);
+    Optional<User> findByEmail(String email);
 }

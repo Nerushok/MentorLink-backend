@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class AuthService {
@@ -23,24 +22,22 @@ public class AuthService {
     }
 
     public User registration(RegistrationRequest registrationRequest) {
-        final Optional<User> userCandidate = userRepository.getUserByEmail(registrationRequest.getEmail());
+        final Optional<User> userCandidate = userRepository.findByEmail(registrationRequest.getEmail());
 
         if (userCandidate.isPresent()) {
             throw new RuntimeException("User is already exists.");
         } else {
-            final User user = new User(
-                    UUID.randomUUID(),
-                    registrationRequest.getName(),
-                    registrationRequest.getEmail(),
-                    registrationRequest.getPassword()
-            );
+            final User user = new User();
+            user.setName(registrationRequest.getName());
+            user.setEmail(registrationRequest.getEmail());
+            user.setPassword(registrationRequest.getPassword());
 
-            return userRepository.addUser(user);
+            return userRepository.save(user);
         }
     }
 
     public User login(LoginRequest loginRequest) {
-        final Optional<User> user = userRepository.getUserByEmail(loginRequest.getEmail());
+        final Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
 
         if (user.isPresent()) return user.get();
         else throw new UserNotFoundException();
