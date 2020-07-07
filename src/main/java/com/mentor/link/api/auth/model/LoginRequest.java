@@ -1,4 +1,4 @@
-package com.mentor.link.model;
+package com.mentor.link.api.auth.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

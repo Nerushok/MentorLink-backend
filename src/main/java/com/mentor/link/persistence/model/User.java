@@ -1,4 +1,4 @@
-package com.mentor.link.model;
+package com.mentor.link.persistence.model;
 
 import javax.persistence.*;
 

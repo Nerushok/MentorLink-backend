@@ -1,6 +1,6 @@
 package com.mentor.link.utils.exception;
 
-import com.mentor.link.model.ErrorResponse;
+import com.mentor.link.api.common.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

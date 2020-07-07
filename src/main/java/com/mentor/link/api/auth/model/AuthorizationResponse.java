@@ -1,4 +1,6 @@
-package com.mentor.link.model;
+package com.mentor.link.api.auth.model;
+
+import com.mentor.link.api.common.model.UserResponse;
 
 public class AuthorizationResponse {
 

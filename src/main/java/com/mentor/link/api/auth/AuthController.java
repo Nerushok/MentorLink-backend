@@ -1,12 +1,12 @@
-package com.mentor.link.api;
+package com.mentor.link.api.auth;
 
 import com.mentor.link.Constants;
+import com.mentor.link.api.auth.model.AuthorizationResponse;
+import com.mentor.link.api.auth.model.LoginRequest;
+import com.mentor.link.api.auth.model.RegistrationRequest;
+import com.mentor.link.api.common.mapper.UserResponseMapper;
 import com.mentor.link.config.JwtTokenUtil;
-import com.mentor.link.model.AuthorizationResponse;
-import com.mentor.link.model.LoginRequest;
-import com.mentor.link.model.RegistrationRequest;
-import com.mentor.link.model.User;
-import com.mentor.link.model.mappers.UserResponseMapper;
+import com.mentor.link.persistence.model.User;
 import com.mentor.link.service.AuthService;
 import com.mentor.link.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +33,8 @@ public class AuthController {
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
     private JwtUserDetailsService userDetailsService;
-    @Autowired
-    private UserResponseMapper userResponseMapper;
+
+    private final UserResponseMapper userResponseMapper = UserResponseMapper.INSTANCE;
 
     @PostMapping("/login")
     public ResponseEntity<AuthorizationResponse> login(@RequestBody LoginRequest loginRequest) throws Exception {
@@ -44,7 +44,7 @@ public class AuthController {
 
         final UserDetails userDetails = userDetailsService.getUserDetailsByUser(user);
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthorizationResponse(userResponseMapper.map(user), token));
+        return ResponseEntity.ok(new AuthorizationResponse(userResponseMapper.userToUserResponse(user), token));
     }
 
     @PostMapping("/registration")
@@ -53,7 +53,7 @@ public class AuthController {
 
         final UserDetails userDetails = userDetailsService.getUserDetailsByUser(user);
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new AuthorizationResponse(userResponseMapper.map(user), token));
+        return ResponseEntity.ok(new AuthorizationResponse(userResponseMapper.userToUserResponse(user), token));
     }
 
     private void authenticate(String username, String password) throws Exception {

@@ -1,6 +1,6 @@
-package com.mentor.link.repository.user;
+package com.mentor.link.persistence;
 
-import com.mentor.link.model.User;
+import com.mentor.link.persistence.model.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
