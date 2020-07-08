@@ -4,7 +4,7 @@ import com.mentor.link.api.auth.model.LoginRequest;
 import com.mentor.link.api.auth.model.RegistrationRequest;
 import com.mentor.link.persistence.model.User;
 import com.mentor.link.persistence.UserRepository;
-import com.mentor.link.utils.exception.UserNotFoundException;
+import com.mentor.link.service.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

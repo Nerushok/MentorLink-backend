@@ -2,7 +2,7 @@ package com.mentor.link.service;
 
 import com.mentor.link.persistence.model.User;
 import com.mentor.link.persistence.UserRepository;
-import com.mentor.link.utils.exception.UserNotFoundException;
+import com.mentor.link.service.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

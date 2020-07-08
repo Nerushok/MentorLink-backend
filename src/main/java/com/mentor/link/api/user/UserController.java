@@ -1,4 +1,4 @@
-package com.mentor.link.api;
+package com.mentor.link.api.user;
 
 import com.mentor.link.Constants;
 import com.mentor.link.api.common.mapper.UserResponseMapper;
