@@ -14,10 +14,14 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     private final UserResponseMapper userResponseMapper = UserResponseMapper.INSTANCE;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/{userId}")
     public UserResponse getUserById(@PathVariable("userId") Long userId) {
