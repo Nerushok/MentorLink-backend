@@ -5,7 +5,7 @@ import com.mentor.link.api.auth.model.AuthorizationResponse;
 import com.mentor.link.api.auth.model.LoginRequest;
 import com.mentor.link.api.auth.model.RegistrationRequest;
 import com.mentor.link.api.common.mapper.UserResponseMapper;
-import com.mentor.link.config.JwtTokenUtil;
+import com.mentor.link.auth.JwtTokenUtil;
 import com.mentor.link.persistence.model.User;
 import com.mentor.link.service.AuthService;
 import com.mentor.link.service.JwtUserDetailsService;

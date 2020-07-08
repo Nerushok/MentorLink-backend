@@ -1,4 +1,4 @@
-package com.mentor.link.config;
+package com.mentor.link.auth;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

@@ -1,4 +1,4 @@
-package com.mentor.link.config;
+package com.mentor.link.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
@@ -25,14 +25,11 @@ public class JwtTokenUtil implements Serializable {
 
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 1000;
 
-    private String secret;
     private final SecretKey signingKey;
     private final JwtParser jwtParser;
 
     @Autowired
     public JwtTokenUtil(@Value("${jwt.secret}") String secret) {
-        super();
-        this.secret = secret;
         jwtParser = Jwts.parserBuilder().setSigningKey(secret).build();
         signingKey = new SecretKeySpec(Decoders.BASE64.decode(secret), SignatureAlgorithm.HS512.getJcaName());
     }

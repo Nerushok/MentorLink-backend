@@ -7,7 +7,6 @@ public class UserResponse {
     private String email;
 
     public UserResponse() {
-        super();
     }
 
     public UserResponse(Long id, String name, String email) {

@@ -1,4 +1,4 @@
-package com.mentor.link.config;
+package com.mentor.link.auth;
 
 import com.mentor.link.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;

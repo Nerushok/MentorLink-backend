@@ -1,6 +1,8 @@
 package com.mentor.link.config;
 
 import com.mentor.link.Constants;
+import com.mentor.link.auth.JwtAuthenticationEntryPoint;
+import com.mentor.link.auth.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
