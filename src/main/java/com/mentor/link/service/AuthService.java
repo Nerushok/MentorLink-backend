@@ -1,7 +1,6 @@
 package com.mentor.link.service;
 
 import com.mentor.link.api.auth.model.LoginRequest;
-import com.mentor.link.api.auth.model.RegistrationRequest;
 import com.mentor.link.persistence.UserRepository;
 import com.mentor.link.persistence.model.User;
 import com.mentor.link.service.exceptions.UserNotFoundException;
@@ -23,13 +22,14 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User registration(RegistrationRequest registrationRequest) {
-        final Optional<User> userCandidate = userRepository.findByEmail(registrationRequest.getEmail());
+    public User registration(User user) {
+        final Optional<User> userCandidate = userRepository.findByEmail(user.getEmail());
 
         if (userCandidate.isPresent()) {
             throw new RuntimeException("User is already exists.");
         } else {
-            return saveUser(registrationRequest);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return userRepository.save(user);
         }
     }
 
@@ -38,14 +38,5 @@ public class AuthService {
 
         if (user.isPresent()) return user.get();
         else throw new UserNotFoundException();
-    }
-
-    private User saveUser(RegistrationRequest registrationRequest) {
-        final User user = new User();
-        user.setName(registrationRequest.getName());
-        user.setEmail(registrationRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-
-        return userRepository.save(user);
     }
 }

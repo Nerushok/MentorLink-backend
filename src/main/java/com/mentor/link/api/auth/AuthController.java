@@ -53,7 +53,7 @@ public class AuthController {
 
     @PostMapping("/registration")
     public ResponseEntity<AuthorizationResponse> registration(@RequestBody RegistrationRequest registrationRequest) {
-        final User user = authService.registration(registrationRequest);
+        final User user = authService.registration(userResponseMapper.registrationRequestToUser(registrationRequest));
 
         final UserDetails userDetails = userDetailsService.getUserDetailsByUser(user);
         final String token = jwtTokenUtil.generateToken(userDetails);
